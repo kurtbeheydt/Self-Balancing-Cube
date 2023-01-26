@@ -48,11 +48,30 @@ float K2 = 10.50;
 float K3 = 0.03;
 int loop_time = 10;
 
+/*
+// roze kubus
+float offsetX = -4.10, offsetY = -11.00;
+float offsetX3 = 30.3, offsetY3 = -18.3;
+float offsetX4 = 0.5, offsetY4 = 36.05;
+float offsetX2 = -29.4, offsetY2 = -19.6;
+float alpha = 0.74;
+*/
+
+// blauwe kubus
+float offsetX = -0.12, offsetY = -11.21;
+float offsetX2 = -28.47, offsetY2 = -18.87;
+float offsetX3 = 29.20, offsetY3 = -18.44;
+float offsetX4 = -0.76, offsetY4 = 34.27;
+float alpha = 0.74;
+
+/*
+// orig blauwe kubus
 float offsetX = -0.84, offsetY = -9.81;
 float offsetX2 = -28.47, offsetY2 = -18.87;
 float offsetX3 = 29.60, offsetY3 = -17.74;
 float offsetX4 = -0.76, offsetY4 = 34.27;
 float alpha = 0.74;
+*/
 
 /*
 // original
@@ -130,12 +149,12 @@ void angle_calc() {
     Acc_angleY = -atan2(AcZ, -AcX) * 57.2958;  // angle from acc. values * 57.2958 (deg/rad)
     robot_angleY = robot_angleY * Gyro_amount + Acc_angleY * (1.0 - Gyro_amount);
 
-    //  SerialBT.print("AngleX_: "); SerialBT.print(robot_angleX); SerialBT.print(" AngleY_: "); SerialBT.println(robot_angleY);
+    // SerialBT.print("AngleX_: "); SerialBT.print(robot_angleX); SerialBT.print(" AngleY_: "); SerialBT.println(robot_angleY);
     // Serial.print("AngleX_: "); Serial.print(robot_angleX); Serial.print(" AngleY_: "); Serial.println(robot_angleY);
     angleX = robot_angleX - offsetX;
     angleY = robot_angleY - offsetY;
     //   SerialBT.print("AngleX: "); SerialBT.print(angleX); SerialBT.print(" AngleY: "); SerialBT.println(angleY);
-    //   Serial.print("AngleX: "); Serial.print(angleX); Serial.print(" AngleY: "); Serial.println(angleY);
+    //  Serial.print("AngleX: "); Serial.print(angleX); Serial.print(" AngleY: "); Serial.println(angleY);
 
     if (abs(angleX - offsetX2) < 2 && abs(angleY - offsetY2) < 0.6) {
         balancing_point = 2;
@@ -392,7 +411,7 @@ void loop() {
     }
 
     if (currentT - previousT_2 >= 500) {
-        battVoltage((double)analogRead(VBAT) / 111);  // 300 kubo plokste
+        battVoltage((double)analogRead(VBAT) / 111);
         previousT_2 = currentT;
     }
 }
